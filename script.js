@@ -1,68 +1,61 @@
 const buttons = document.querySelectorAll(".btn");
-const display = document.querySelector("#display");
-const operator = document.querySelectorAll(".operator");
+const display = document.querySelector(".display");
+
 let firstNumber = "";
 let secondNumber = "";
-let newOperator = "";
+let Operator = "";
+let result = "";
+
 let allOperators = ["-", "+", "*", "/"];
 let allNumbers = [".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-isFirstNumberEmpty = false;
-let result = "";
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (
-      allNumbers.includes(button.textContent) &&
-      isFirstNumberEmpty == false
-    ) {
+    if (allNumbers.includes(button.textContent) && firstNumber === "") {
       display.value += button.textContent;
+    } else if (allOperators.includes(button.textContent)) {
       firstNumber = display.value;
-    } else if (
-      allOperators.includes(button.textContent) &&
-      isFirstNumberEmpty == false
-    ) {
       display.value = "";
-    //   display.value = button.textContent;
-    //   newOperator = display.value;
-      newOperator = button.textContent;
-      isFirstNumberEmpty = true;
-    } else if (
-      allNumbers.includes(button.textContent) &&
-      isFirstNumberEmpty == true
-    ) {
+      Operator = button.textContent;
+    } else if (allNumbers.includes(button.textContent) && firstNumber !== "") {
       display.value += button.textContent;
-      secondNumber = display.value;
+      secondNumber += button.textContent;
     } else if (button.textContent === "=") {
+      result = "";
       display.value = "";
-      result = calculation(
-        Number(firstNumber),
-        Number(secondNumber),
-        newOperator,
-      );
-      console.log(result);
+      result = calculate(Number(firstNumber), Number(secondNumber), Operator);
       display.value = result;
-    } else if (button.textContent === "C") {
-      display.value = "";
       firstNumber = "";
       secondNumber = "";
-      newOperator = "";
-      isFirstNumberEmpty = false;
+      Operator = "";
+      firstNumber = result;
+      result = "";
+    } else if (button.textContent === "Clear") {
+      clearAll();
     }
   });
 });
 
-function calculation(num1, num2, opt) {
-      if (opt === "+") {
-        let result = num1 + num2;
-        return result.toFixed(2);
-      } else if (opt == "-") {
-        let result = num1 - num2;
-        return result.toFixed(2);
-      } else if (opt == "/") {
-        let result = num1 / num2;
-        return result.toFixed(5);
-      } else if (opt == "*") {
-        let result = num1 * num2;
-        return result.toFixed(7);
-      }
-    }
+function calculate(firstNumber, secondNumber, Operator) {
+  if (Operator === "+") {
+    let result = firstNumber + secondNumber;
+    return Number(result.toPrecision(2));
+  } else if (Operator === "-") {
+    let result = firstNumber - secondNumber;
+    return Number(result.toPrecision(2));
+  } else if (Operator === "*") {
+    let result = firstNumber * secondNumber;
+    return Number(result.toPrecision(2));
+  } else if (Operator === "/") {
+    let result = firstNumber / secondNumber;
+    return Number(result.toPrecision(2));
+  }
+}
+
+function clearAll() {
+  firstNumber = "";
+  secondNumber = "";
+  Operator = "";
+  result = "";
+  display.value = "";
+}

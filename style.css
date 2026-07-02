@@ -1,73 +1,96 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #696969;
-    font-family: Arial, sans-serif;
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#121212;
 }
 
-.calculator {
-    width: 340px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.calculator{
+    width:320px;
+    background:#1e1e1e;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
 }
 
-#display {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 15px;
-    border: none;
-    outline: none;
-    background-color: #f0f0f0;
-    border-radius: 12px;
-    text-align: right;
-    padding: 0 15px;
-    font-size: 2rem;
+.display{
+    width:100%;
+    height:70px;
+    border:none;
+    outline:none;
+    background:#2b2b2b;
+    color:#fff;
+    font-size:2rem;
+    text-align:right;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
 }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
 }
 
-button {
-    height: 70px;
-    border: none;
-    border-radius: 12px;
-    background-color: #e8e8e8;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: 0.2s;
+/* All buttons */
+button{
+    height:65px;
+    border:none;
+    border-radius:10px;
+    background:#333;
+    color:#fff;
+    font-size:1.3rem;
+    cursor:pointer;
+    transition:.2s;
 }
 
-button:hover {
-    transform: scale(1.03);
+button:hover{
+    background:#444;
 }
 
-.operator {
-    background-color: #ffb84d;
+button:active{
+    transform:scale(.96);
 }
 
-.equal {
-    background-color: #4caf50;
-    color: white;
+/* Clear button */
+button:first-child{
+    grid-column:1 / 5;
+    background:#e74c3c;
 }
 
-.clear {
-    background-color: #f44336;
-    color: white;
+button:first-child:hover{
+    background:#ff5c4d;
 }
 
-.zero {
-    grid-column: span 4;
+/* Operator buttons */
+button:nth-child(5),
+button:nth-child(9),
+button:nth-child(13),
+button:nth-child(17){
+    background:#ff9500;
+}
+
+button:nth-child(5):hover,
+button:nth-child(9):hover,
+button:nth-child(13):hover,
+button:nth-child(17):hover{
+    background:#ffab33;
+}
+
+/* Equals button */
+button:nth-child(16){
+    background:#2d9c5b;
+}
+
+button:nth-child(16):hover{
+    background:#35b96b;
 }
